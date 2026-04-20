@@ -36,7 +36,6 @@ class OrganizationAdmin(admin.ModelAdmin):
     list_filter   = ('status', 'country')
     search_fields = ('name', 'slug', 'email')
     prepopulated_fields = {'slug': ('name',)}
-    readonly_fields = ('id', 'created_at', 'updated_at')
     fieldsets = (
         ('Identity', {'fields': ('name', 'slug', 'logo', 'description', 'website')}),
         ('Contact',  {'fields': ('email', 'phone_number', 'address', 'country')}),
@@ -52,7 +51,6 @@ class RegionAdmin(admin.ModelAdmin):
     list_filter   = ('organization', 'is_active')
     search_fields = ('name', 'organization__name')
     raw_id_fields = ('leader',)
-    readonly_fields = ('id', 'created_at', 'updated_at')
 
 
 @admin.register(Province)
@@ -62,7 +60,6 @@ class ProvinceAdmin(admin.ModelAdmin):
     list_filter   = ('organization', 'region', 'is_active')
     search_fields = ('name', 'region__name', 'organization__name')
     raw_id_fields = ('leader',)
-    readonly_fields = ('id', 'created_at', 'updated_at')
 
 
 @admin.register(Church)
@@ -71,7 +68,6 @@ class ChurchAdmin(admin.ModelAdmin):
     list_filter   = ('organization', 'province__region', 'province', 'is_active')
     search_fields = ('name', 'city', 'email', 'province__name')
     raw_id_fields = ('leader',)
-    readonly_fields = ('id', 'created_at', 'updated_at')
     fieldsets = (
         ('Identity',  {'fields': ('organization', 'province', 'leader', 'name', 'logo', 'description', 'website')}),
         ('Contact',   {'fields': ('email', 'phone_number', 'address', 'city', 'country')}),

@@ -51,7 +51,7 @@ class UserAdmin(BaseUserAdmin):
         }),
     )
 
-    readonly_fields = ('created_at', 'updated_at', 'last_login', 'date_joined')
+    readonly_fields = ('last_login', 'date_joined')
 
 
 @admin.register(UserProfile)

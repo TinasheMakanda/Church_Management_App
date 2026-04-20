@@ -8,7 +8,6 @@ class EventAdmin(admin.ModelAdmin):
     list_filter   = ('scope', 'status', 'organization', 'is_online')
     search_fields = ('title', 'venue_name', 'organization__name')
     raw_id_fields = ('created_by',)
-    readonly_fields = ('id', 'created_at', 'updated_at')
     filter_horizontal = ()
 
     fieldsets = (

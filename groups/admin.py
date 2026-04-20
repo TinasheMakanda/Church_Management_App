@@ -18,7 +18,6 @@ class ChurchGroupAdmin(admin.ModelAdmin):
     search_fields = ('name', 'church__name')
     raw_id_fields = ('leader',)
     filter_horizontal = ('events',)
-    readonly_fields = ('id', 'created_at', 'updated_at')
 
 
 @admin.register(GroupMembership)

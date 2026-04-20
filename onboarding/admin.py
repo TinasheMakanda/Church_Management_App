@@ -8,7 +8,7 @@ class InvitationAdmin(admin.ModelAdmin):
     list_display  = ('email', 'role_proffered', 'organization', 'status', 'invited_by', 'expires_at', 'is_valid')
     list_filter   = ('status', 'role_proffered', 'organization')
     search_fields = ('email', 'organization__name', 'invited_by__email')
-    readonly_fields = ('id', 'token', 'invite_url', 'accepted_at', 'accepted_by', 'created_at', 'updated_at')
+    readonly_fields = ('token', 'invite_url', 'accepted_at', 'accepted_by')
     raw_id_fields = ('invited_by', 'accepted_by')
 
     fieldsets = (
