@@ -17,5 +17,5 @@ class EventAdmin(admin.ModelAdmin):
         ('Schedule',  {'fields': ('start_datetime', 'end_datetime')}),
         ('Venue',     {'fields': ('venue_name', 'venue_address', 'is_online', 'stream_url', 'max_attendance')}),
         ('Finance',   {'fields': ('budget', 'finance_metadata'), 'classes': ('collapse',)}),
-        ('Meta',      {'fields': ('created_by', 'created_at', 'updated_at'), 'classes': ('collapse',)}),
+        ('Meta',      {'fields': ('created_by',), 'classes': ('collapse',)}),
     )

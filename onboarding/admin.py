@@ -16,7 +16,6 @@ class InvitationAdmin(admin.ModelAdmin):
         ('Sender',       {'fields': ('invited_by',)}),
         ('Token & Link', {'fields': ('token', 'invite_url')}),
         ('Lifecycle',    {'fields': ('status', 'expires_at', 'accepted_at', 'accepted_by')}),
-        ('Timestamps',   {'fields': ('created_at', 'updated_at'), 'classes': ('collapse',)}),
     )
 
     actions = ['revoke_selected']

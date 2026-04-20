@@ -42,7 +42,6 @@ class OrganizationAdmin(admin.ModelAdmin):
         ('Contact',  {'fields': ('email', 'phone_number', 'address', 'country')}),
         ('Status',   {'fields': ('status',)}),
         ('Finance',  {'fields': ('payment_provider', 'payment_metadata'), 'classes': ('collapse',)}),
-        ('Timestamps', {'fields': ('created_at', 'updated_at'), 'classes': ('collapse',)}),
     )
 
 
@@ -78,5 +77,4 @@ class ChurchAdmin(admin.ModelAdmin):
         ('Contact',   {'fields': ('email', 'phone_number', 'address', 'city', 'country')}),
         ('Details',   {'fields': ('seating_capacity', 'service_times', 'is_active')}),
         ('Finance',   {'fields': ('payment_provider', 'payment_metadata'), 'classes': ('collapse',)}),
-        ('Timestamps',{'fields': ('created_at', 'updated_at'), 'classes': ('collapse',)}),
     )
