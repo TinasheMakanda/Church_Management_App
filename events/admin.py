@@ -1,9 +1,10 @@
 from django.contrib import admin
+from unfold.admin import ModelAdmin
 from .models import Event
 
 
 @admin.register(Event)
-class EventAdmin(admin.ModelAdmin):
+class EventAdmin(ModelAdmin):
     list_display  = ('title', 'scope', 'status', 'organization', 'start_datetime', 'end_datetime')
     list_filter   = ('scope', 'status', 'organization', 'is_online')
     search_fields = ('title', 'venue_name', 'organization__name')

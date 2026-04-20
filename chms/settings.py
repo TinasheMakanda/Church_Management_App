@@ -37,6 +37,9 @@ CSRF_TRUSTED_ORIGINS = config(
 # ---------------------------------------------------------------------------
 
 DJANGO_APPS = [
+    "unfold",  # must be before django.contrib.admin
+    "unfold.contrib.filters",
+    "unfold.contrib.forms",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -87,6 +90,17 @@ TEMPLATES = [
         },
     },
 ]
+
+UNFOLD = {
+    "SITE_TITLE": "Church Management System",
+    "SITE_HEADER": "CHMS Admin",
+    "SITE_URL": "/",
+    "SITE_ICON": {
+        "light": lambda request: "/static/favicon.ico",
+        "dark": lambda request: "/static/favicon.ico",
+    },
+    "THEME": "light", # Force light mode
+}
 
 WSGI_APPLICATION = "chms.wsgi.application"
 ASGI_APPLICATION = "chms.asgi.application"

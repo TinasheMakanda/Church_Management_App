@@ -1,10 +1,11 @@
 from django.contrib import admin
 from django.utils import timezone
+from unfold.admin import ModelAdmin
 from .models import Invitation, InvitationStatus
 
 
 @admin.register(Invitation)
-class InvitationAdmin(admin.ModelAdmin):
+class InvitationAdmin(ModelAdmin):
     list_display  = ('email', 'role_proffered', 'organization', 'status', 'invited_by', 'expires_at', 'is_valid')
     list_filter   = ('status', 'role_proffered', 'organization')
     search_fields = ('email', 'organization__name', 'invited_by__email')

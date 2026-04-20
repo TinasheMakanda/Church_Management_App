@@ -1,8 +1,9 @@
 from django.contrib import admin
+from unfold.admin import ModelAdmin, TabularInline
 from .models import ChurchGroup, GroupMembership
 
 
-class GroupMembershipInline(admin.TabularInline):
+class GroupMembershipInline(TabularInline):
     model = GroupMembership
     extra = 0
     fields = ('user', 'is_co_leader', 'joined', 'notes')
@@ -11,7 +12,7 @@ class GroupMembershipInline(admin.TabularInline):
 
 
 @admin.register(ChurchGroup)
-class ChurchGroupAdmin(admin.ModelAdmin):
+class ChurchGroupAdmin(ModelAdmin):
     inlines = [GroupMembershipInline]
     list_display  = ('name', 'group_type', 'church', 'leader', 'is_active')
     list_filter   = ('group_type', 'is_active', 'church__province__organization')
@@ -21,7 +22,7 @@ class ChurchGroupAdmin(admin.ModelAdmin):
 
 
 @admin.register(GroupMembership)
-class GroupMembershipAdmin(admin.ModelAdmin):
+class GroupMembershipAdmin(ModelAdmin):
     list_display  = ('user', 'group', 'is_co_leader', 'joined')
     list_filter   = ('is_co_leader', 'group__church')
     search_fields = ('user__email', 'group__name')
