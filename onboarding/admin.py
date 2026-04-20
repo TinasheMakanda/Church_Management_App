@@ -12,7 +12,7 @@ class InvitationAdmin(admin.ModelAdmin):
     raw_id_fields = ('invited_by', 'accepted_by')
 
     fieldsets = (
-        ('Invitation',   {'fields': ('id', 'organization', 'email', 'role_proffered', 'target_entity_id', 'message')}),
+        ('Invitation',   {'fields': ('organization', 'email', 'role_proffered', 'target_entity_id', 'message')}),
         ('Sender',       {'fields': ('invited_by',)}),
         ('Token & Link', {'fields': ('token', 'invite_url')}),
         ('Lifecycle',    {'fields': ('status', 'expires_at', 'accepted_at', 'accepted_by')}),

@@ -12,7 +12,7 @@ class EventAdmin(admin.ModelAdmin):
     filter_horizontal = ()
 
     fieldsets = (
-        ('Core',      {'fields': ('id', 'organization', 'title', 'description', 'banner', 'status')}),
+        ('Core',      {'fields': ('organization', 'title', 'description', 'banner', 'status')}),
         ('Scope',     {'fields': ('scope', 'province', 'church')}),
         ('Schedule',  {'fields': ('start_datetime', 'end_datetime')}),
         ('Venue',     {'fields': ('venue_name', 'venue_address', 'is_online', 'stream_url', 'max_attendance')}),

@@ -38,7 +38,7 @@ class OrganizationAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
     readonly_fields = ('id', 'created_at', 'updated_at')
     fieldsets = (
-        ('Identity', {'fields': ('id', 'name', 'slug', 'logo', 'description', 'website')}),
+        ('Identity', {'fields': ('name', 'slug', 'logo', 'description', 'website')}),
         ('Contact',  {'fields': ('email', 'phone_number', 'address', 'country')}),
         ('Status',   {'fields': ('status',)}),
         ('Finance',  {'fields': ('payment_provider', 'payment_metadata'), 'classes': ('collapse',)}),
@@ -74,7 +74,7 @@ class ChurchAdmin(admin.ModelAdmin):
     raw_id_fields = ('leader',)
     readonly_fields = ('id', 'created_at', 'updated_at')
     fieldsets = (
-        ('Identity',  {'fields': ('id', 'organization', 'province', 'leader', 'name', 'logo', 'description', 'website')}),
+        ('Identity',  {'fields': ('organization', 'province', 'leader', 'name', 'logo', 'description', 'website')}),
         ('Contact',   {'fields': ('email', 'phone_number', 'address', 'city', 'country')}),
         ('Details',   {'fields': ('seating_capacity', 'service_times', 'is_active')}),
         ('Finance',   {'fields': ('payment_provider', 'payment_metadata'), 'classes': ('collapse',)}),
