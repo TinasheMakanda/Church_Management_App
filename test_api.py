@@ -28,9 +28,9 @@ def main():
     # 2. Test sending an invitation
     print("\n2. Sending an invitation...")
     invite_data = {
-        "email": "test_apostle@example.com",
+        "email": "another_test@example.com",
         "role_proffered": "APOSTLE",
-        "message": "Welcome to the network!"
+        "message": "Testing the flow again!"
     }
     
     response = session.post(

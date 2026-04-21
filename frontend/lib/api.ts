@@ -11,8 +11,14 @@ const api = axios.create({
   },
 });
 
-// Request interceptor to add CSRF token
+// Request interceptor to add CSRF and Auth tokens
 api.interceptors.request.use((config) => {
+  // Add Auth token if we have it
+  const authToken = Cookies.get('auth_token');
+  if (authToken) {
+    config.headers['Authorization'] = `Token ${authToken}`;
+  }
+
   // If we're performing a mutation, we need the CSRF token
   if (config.method && ['post', 'put', 'patch', 'delete'].includes(config.method.toLowerCase())) {
     const csrfToken = Cookies.get('csrftoken');

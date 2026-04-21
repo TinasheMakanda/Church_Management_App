@@ -3,6 +3,7 @@
 import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import api from '@/lib/api';
+import Cookies from 'js-cookie';
 
 function LoginForm() {
   const router = useRouter();
@@ -33,16 +34,17 @@ function LoginForm() {
       // Let's assume you have added `rest_framework.authtoken` or similar, or we can use the 
       // standard Django session login if we write a custom view.
       
-      // For now, let's just make a basic auth request to see if the credentials are valid
-      const response = await api.get('/auth/users/', {
-        auth: {
-          username: email,
-          password: password
-        }
+      // Get the auth token from our new endpoint
+      const response = await api.post('/api-token-auth/', {
+        username: email,
+        password: password
       });
       
-      // If we get here, credentials are valid!
-      // In a real app, this is where you'd store the token or rely on the session cookie
+      const token = response.data.token;
+      
+      // Store it in a cookie (or localStorage)
+      Cookies.set('auth_token', token, { expires: 7 }); // expires in 7 days
+      
       router.push('/dashboard');
     } catch (err: any) {
       setError(err.response?.data?.detail || 'Invalid email or password.');

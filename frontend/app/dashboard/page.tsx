@@ -42,6 +42,8 @@ export default function DashboardPage() {
     // Basic logout logic: clear any stored tokens if you had them,
     // and for basic auth/session auth, hitting an invalid endpoint clears state 
     // or just redirecting to home is enough for this simple demo.
+    // Cookies is not imported here, but we can clear it manually via document or just redirect 
+    document.cookie = "auth_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     router.push('/');
   };
 
