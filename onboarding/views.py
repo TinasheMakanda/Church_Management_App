@@ -46,12 +46,13 @@ class InvitationViewSet(viewsets.ModelViewSet):
         return InvitationSerializer
 
     def create(self, request, *args, **kwargs):
+        from .tasks import send_invitation_email
         serializer = SendInvitationSerializer(data=request.data, context={'request': request})
         serializer.is_valid(raise_exception=True)
         invitation = serializer.save()
 
-        # TODO: fire send_invitation_email.delay(invitation.id) via Celery
-        #       For now we return the invite URL in the response for development.
+        # Fire async celery task
+        send_invitation_email.delay(invitation.id)
 
         return Response(
             InvitationSerializer(invitation, context={'request': request}).data,

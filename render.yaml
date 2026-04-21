@@ -18,12 +18,40 @@ services:
         fromDatabase:
           name: church-management-db
           property: connectionString
+      - key: REDIS_URL
+        fromService:
+          type: redis
+          name: church-management-redis
+          property: connectionString
       - key: ALLOWED_HOSTS
         value: ".onrender.com"
       - key: CSRF_TRUSTED_ORIGINS
         value: "https://*.onrender.com"
 
+  - type: worker
+    name: church-management-celery
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: celery -A chms worker -l INFO
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: DATABASE_URL
+        fromDatabase:
+          name: church-management-db
+          property: connectionString
+      - key: REDIS_URL
+        fromService:
+          type: redis
+          name: church-management-redis
+          property: connectionString
+
 databases:
   - name: church-management-db
     databaseName: church_management_db
     user: church_management_user
+
+  - type: redis
+    name: church-management-redis
+    plan: free
